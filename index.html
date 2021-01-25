@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Heroes</title>
+    <link rel="stylesheet" href="fonts/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body">
+    <header class="header">
+        <div class="wrap">
+            <h1 class="header__title">Star Wars Heroes</h1>
+        </div>
+    </header>
+    <main class="main">
+        <div class="wrap heroes_list">
+            <li class="hero">
+                <!-- создаем элемент с тегом li -->
+                <div class="main__hero__block">
+                    <div class="info__area">
+                        <!-- создаем основной блок для Напоминания -->
+                        <div class="info__title-block">
+                            <!-- создаем блок для заголовка -->
+                            <div class="name__title">Name of hero</div> <!-- создаем заголовок напоминания -->
+                           <div class="toggle__block">
+                               <div class="toggle__circle">
+                            <div class="toggle__info">i</div>
+                        </div>
+                            <!-- создаем блок для кружочка справа i -->
+                        </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="more__info">
+                    <h3 class="birthday__info">Birthday:</h3>
+                    <div class="birthday__info-date">21.01.1979</div>
+                    <!--дата, на которую установлено напоминание-->
+                    <h3 class="planet__info">Planet:</h3>
+                    <div class="planet__info-place">Earth</div>
+                    <!--время, на которое установлено напоминание-->
+                </div>
+            </li>
+        </div>
+        <div class="hero__card">
+            <div class="main__hero-block">
+                <div class="hero__card-wrap">
+                    <div class="hero__info-block card__item">
+                        <p class="name__info text-info" data-idx="0">name:</p>
+                        <p class="hero__title-info answer-info">Luke Skywalker</p>
+                    </div>
+                    <div class="hero__info-block card__item">
+                        <p class="birth__year__info text-info">birth year:</p>
+                        <p class="year__info answer-info">19 BBY</p>
+                    </div>
+                    <div class="hero__info-block card__item">
+                        <p class="homeworld__info text-info">homeworld:</p>
+                        <p class="home__info answer-info">Tatooine</p>
+                    </div>
+                    <div class="hero__info-block card__item">
+                        <p class="eye__color__info text-info">eye color:</p>
+                        <p class="eye__info answer-info">Blue</p>
+                    </div>
+                    <div class="hero__info-block card__item">
+                        <p class="gender__info text-info">gender:</p>
+                        <p class="gender__type answer-info">Male</p>
+                    </div>
+                    <div class="hero__info-block card__item">
+                        <p class="hair_color__info text-info">hair color:</p>
+                        <p class="hair__info answer-info">Blond</p>
+                    </div>
+                    <div class="hero__info-block card__item">
+                        <p class="mass__info text-info">mass:</p>
+                        <p class="mass__value answer-info">77</p>
+                    </div>
+                    <div class="hero__info-block card__item">
+                        <p class="skin__color__info text-info">skin:</p>
+                        <p class="scin__type answer-info">Fair</p>
+                    </div>
+                </div>
+                <div class="hero__pic" style="background-image: url('img/luke_skywalker.jpg');"></div>
+            </div>
+            <!-- <div class="arrow__back" style="background-image: url('img/arrow-circle-left-solid.svg');"></div> -->
+            <div class="arrow__back">
+                <i class="fas fa-arrow-circle-left"></i>
+            </div>
+        </div>
+    </main>
+
+
+
+    <script src='script.js'></script>
+</body>
+
+</html>

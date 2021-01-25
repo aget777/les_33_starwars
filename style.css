@@ -1,0 +1,179 @@
+@font-face{
+    font-family: "STARWARS";
+    src: url("../fonts/starwarstitle/STARWARS.ttf");
+    font-style: normal; 
+    font-weight: normal; 
+}
+
+@font-face{
+    font-family: "Anakinmono";
+    src: url("../fonts/starwarstext/AnakinmonoRegular-n1lP.ttf");
+    font-style: normal; 
+    font-weight: normal; 
+}
+
+
+.body{
+    margin: 0;
+    background-color: black;
+}
+
+.wrap{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+.header__title{
+    font-family: "STARWARS";
+    font-size: 50px;
+    color: yellow;
+}
+
+.main{
+    font-family: "Anakinmono";
+    font-size: 20px;
+    color: green;
+}
+
+.hero{
+    list-style: none;
+    position: relative;
+    border: 1px solid yellowgreen;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+
+.main__hero__block{
+    margin-bottom: 30px;
+}
+
+
+
+.toggle__block{
+    width: 75px;
+    height: 30px;
+    border: 1px solid red;
+    border-radius: 16px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.toggle__block-check{
+
+}
+
+
+.toggle__circle{
+    height: 29px;
+    width: 29px;
+    border: 1px solid red;
+    border-radius: 100%;
+    background-color:transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(0);
+    transition: transform .6s ease;
+}
+
+.toggle__circle-check{
+    background-color: red;
+    transform: translateX(44px);
+    transition: transform .6s ease;
+}
+
+
+
+.toggle__info{
+    font-size: 15px;
+    color: white;
+}
+
+.more__info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.birthday__info{
+    margin: 0;
+    padding: 0;
+}
+
+
+.planet__info{
+    margin: 0;
+    padding: 0;
+}
+
+
+.hero__card{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    background: black;
+    transform: translateX(120%);
+    transition: transform .6s ease;
+}
+
+.hero__card-show{
+    transform: translateX(0);
+    transition: transform .6s ease;
+}
+
+.hero__card-wrap{
+    width: 490px;
+    margin-right: 50px;
+}
+
+.main__hero-block{
+    display: flex;
+}
+
+.card__item{
+    display: flex;
+    align-items: baseline;
+    font-size: 20px;
+    height: auto;
+    margin: 10px;
+}
+
+.text-info{
+    margin: 0;
+    padding: 0;
+}
+
+.answer-info{
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+    color: yellowgreen;
+    word-break: break-all;
+}
+
+.hero__pic{
+    background-image: url();
+    width: 360px;
+    height: 260px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.arrow__back{
+    margin-left: 30px;
+    font-size: 40px;
+    color: red;
+    position: absolute;
+    top: 400px;
+    left: 0;
+}
