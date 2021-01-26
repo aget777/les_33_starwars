@@ -23,12 +23,29 @@
     margin: 0 auto;
 }
 
-
+.header__block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .header__title{
     font-family: "STARWARS";
     font-size: 50px;
     color: yellow;
+    padding-left: 10px;
 }
+
+.arrow__block{
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+}
+
+.arrow__title{
+    font-size: 35px;
+    color: yellowgreen;
+}
+
 
 .main{
     font-family: "Anakinmono";
@@ -46,12 +63,14 @@
     margin-bottom: 20px;
 }
 
+.warriors__list{
+    padding: 0;
+    margin: 0;
+}
 
 .main__hero__block{
     margin-bottom: 25px;
 }
-
-
 
 .toggle__block{
     width: 75px;
