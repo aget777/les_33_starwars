@@ -17,33 +17,30 @@
     </header>
     <main class="main">
         <div class="wrap heroes_list">
-            <li class="hero">
-                <!-- создаем элемент с тегом li -->
-                <div class="main__hero__block">
-                    <div class="info__area">
-                        <!-- создаем основной блок для Напоминания -->
-                        <div class="info__title-block">
-                            <!-- создаем блок для заголовка -->
-                            <div class="name__title">Name of hero</div> <!-- создаем заголовок напоминания -->
-                           <div class="toggle__block">
-                               <div class="toggle__circle">
-                            <div class="toggle__info">i</div>
-                        </div>
-                            <!-- создаем блок для кружочка справа i -->
-                        </div>
-                            
+            <ul class="warriors__list">
+                <!-- <li class="hero">
+                    <div class="main__hero__block">
+                        <div class="info__area">
+                            <div class="info__title-block">
+                                <div class="name__title">Name of hero</div>
+                                <div class="toggle__block">
+                                    <div class="toggle__circle">
+                                        <div class="toggle__info">i</div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="more__info">
-                    <h3 class="birthday__info">Birthday:</h3>
-                    <div class="birthday__info-date">21.01.1979</div>
-                    <!--дата, на которую установлено напоминание-->
-                    <h3 class="planet__info">Planet:</h3>
-                    <div class="planet__info-place">Earth</div>
-                    <!--время, на которое установлено напоминание-->
-                </div>
-            </li>
+                    <div class="more__info">
+                        <p class="birthday__info">Birthday:</p>
+                        <p class="birthday__info-date">21.01.1979</p>
+
+                        <p class="planet__info">Planet:</p>
+                        <p class="planet__info-place">Earth</p>
+                    </div>
+                </li> -->
+            </ul>
         </div>
         <div class="hero__card">
             <div class="main__hero-block">
@@ -84,7 +81,7 @@
                 <div class="hero__pic" style="background-image: url('img/luke_skywalker.jpg');"></div>
             </div>
             <!-- <div class="arrow__back" style="background-image: url('img/arrow-circle-left-solid.svg');"></div> -->
-            <div class="arrow__back">
+            <div class="arrow__back" id="arrowBack">
                 <i class="fas fa-arrow-circle-left"></i>
             </div>
         </div>
