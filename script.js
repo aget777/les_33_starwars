@@ -1,4 +1,3 @@
-
 let dataList;
 let homeList = [];
 let allData;
@@ -8,63 +7,69 @@ let currentPage = 'https://swapi.dev/api/people/';
 
 
 //начало приложения- функция - обращаемся к серверу, на котором хранятся данные
-function loadPage(){
-fetch(currentPage)
-    .then(response => response.json())
-    .then((data) => {
-        dataList = data.results;  //из всего массива обращаемся к массиву с массивом героев и сохраняем его в собственный массив dataList
-        allData = data;
-        findPlanet(dataList); // передаем массив героев в функцию, чтобы вытащить ссылку на массив с характеристиками планет
-        render(); //передаем на отрисовку данные героев, которые мы вытащили из массива
-    });
+function loadPage() {
+    fetch(currentPage)
+        .then(response => response.json())
+        .then((data) => {
+            dataList = data.results;  //из всего массива обращаемся к массиву с массивом героев и сохраняем его в собственный массив dataList
+            allData = data;
+            findPlanet(dataList); // передаем массив героев в функцию, чтобы вытащить ссылку на массив с характеристиками планет
+            render(); //передаем на отрисовку данные героев, которые мы вытащили из массива
+        });
 }
 
 
 // функция, которая переключает на след. страницу
-function nextPage(){
-    if(allData.next){
-        currentPage = allData.next   // присваиваем текущей странице адрес следующей
-        loadPage(currentPage)        // передаем новый адрес для загрузки
+function nextPage() {
+    if (allData.next) {
+        clearRender();
+        currentPage = allData.next;   // присваиваем текущей странице адрес следующей
+        loadPage(currentPage);        // передаем новый адрес для загрузки
     }
 }
 
 // при клике на правую стрелку, переходим на след. страницу
-const next = document.getElementById('arrowRight')  
+const next = document.getElementById('arrowRight');
 next.onclick = nextPage;
 
 
 
 
 // функция, которая переключает на пред. страницу
-function prevPage(){
-    if(allData.previous){
-        currentPage = allData.previous   // присваиваем текущей странице адрес предыдущей
-        loadPage(currentPage)        // передаем новый адрес для загрузки
+function prevPage() {
+    if (allData.previous) {
+        clearRender();
+        currentPage = allData.previous;  // присваиваем текущей странице адрес предыдущей
+        loadPage(currentPage);        // передаем новый адрес для загрузки
     }
 }
 
-const prev = document.getElementById('arrowLeft')
+const prev = document.getElementById('arrowLeft');
 prev.onclick = prevPage;
 
-
+function clearRender() {
+    const warriorsList = document.querySelector('.warriors__list');
+    warriorsList.innerHTML = '';
+    homeList = [];
+}
 
 
 // функция, которая возьмет ссылку на массив планет и вытащит название планеты рождения героя
-function findPlanet(dataList){
-    dataList.map(function(hero, idx){  // перебираем массив героев
+function findPlanet(dataList) {
+    dataList.map(function (hero, idx) {  // перебираем массив героев
         fetch(hero.homeworld)          // вытаскиваем название планеты героя
-        .then(response => response.json())
-        .then((home) =>{
-            homeList[idx] = home.name; // сохраняем название планеты в новый массив
-            render(); //передаем на отрисовку данные планеты, которые мы вытащили из массива
-        })
+            .then(response => response.json())
+            .then((home) => {
+                homeList[idx] = home.name; // сохраняем название планеты в новый массив
+                render(); //передаем на отрисовку данные планеты, которые мы вытащили из массива
+            })
     })
 }
 
 //функция отрисовки данных героя
 function render() {
     const warriorsList = document.querySelector('.warriors__list');
-   
+
     //добавляем плагин - будет крутиться, пока загружется название планет
     const loaderPlanet = `
     <div class="pulse"></div>
@@ -107,13 +112,13 @@ function toggleCheck(idx) {
 
 //функция открытия карточки
 function openCloseCard(idx) {
-    heroCard.classList.add('hero__card-show')
-    showHeroInfo(idx)                                       //вызываем функцию отрисовки данных героя
-    const arrowBack = document.getElementById('arrowBack')   // стрелочка закрытия карточки
+    heroCard.classList.add('hero__card-show');
+    showHeroInfo(idx);                                       //вызываем функцию отрисовки данных героя
+    const arrowBack = document.getElementById('arrowBack');   // стрелочка закрытия карточки
     arrowBack.onclick = () => {                                // при клике по ней закрываем карточку
-        heroCard.classList.remove('hero__card-show')
-        const toggleCircle = document.getElementById('toggle__circle' + idx)
-        toggleCircle.classList.remove('toggle__circle-check')  // передвигаем тумблер влево
+        heroCard.classList.remove('hero__card-show');
+        const toggleCircle = document.getElementById('toggle__circle' + idx);
+        toggleCircle.classList.remove('toggle__circle-check');  // передвигаем тумблер влево
     }
 
 }
@@ -146,7 +151,7 @@ function showHeroInfo(idx) {
     heroSkin.textContent = dataList[idx].skin_color;
 
     const heroPic = document.querySelector('.hero__pic');
-    heroPic.style.backgroundImage = 'url('+picBank[idx]+')';  //подставляем в background css картинку нужного героя из массива
+    heroPic.style.backgroundImage = 'url(' + picBank[idx] + ')';  //подставляем в background css картинку нужного героя из массива
 }
 
 
