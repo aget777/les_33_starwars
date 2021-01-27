@@ -5,20 +5,47 @@ let allData;
 const heroCard = document.querySelector('.hero__card');
 let currentPage = 'https://swapi.dev/api/people/';
 
-let pageList = []
-let newPage;
 
 
-// функция - обращаемся к серверу, на котором хранятся данные
+//начало приложения- функция - обращаемся к серверу, на котором хранятся данные
+function loadPage(){
 fetch(currentPage)
     .then(response => response.json())
     .then((data) => {
         dataList = data.results;  //из всего массива обращаемся к массиву с массивом героев и сохраняем его в собственный массив dataList
         allData = data;
         findPlanet(dataList); // передаем массив героев в функцию, чтобы вытащить ссылку на массив с характеристиками планет
-        console.log(allData)
         render(); //передаем на отрисовку данные героев, которые мы вытащили из массива
     });
+}
+
+
+// функция, которая переключает на след. страницу
+function nextPage(){
+    if(allData.next){
+        currentPage = allData.next   // присваиваем текущей странице адрес следующей
+        loadPage(currentPage)        // передаем новый адрес для загрузки
+    }
+}
+
+// при клике на правую стрелку, переходим на след. страницу
+const next = document.getElementById('arrowRight')  
+next.onclick = nextPage;
+
+
+
+
+// функция, которая переключает на пред. страницу
+function prevPage(){
+    if(allData.previous){
+        currentPage = allData.previous   // присваиваем текущей странице адрес предыдущей
+        loadPage(currentPage)        // передаем новый адрес для загрузки
+    }
+}
+
+const prev = document.getElementById('arrowLeft')
+prev.onclick = prevPage;
+
 
 
 
@@ -120,32 +147,8 @@ function showHeroInfo(idx) {
 
     const heroPic = document.querySelector('.hero__pic');
     heroPic.style.backgroundImage = 'url('+picBank[idx]+')';  //подставляем в background css картинку нужного героя из массива
-    console.log(picBank[idx])
 }
 
-
-// function changePage() {
-//     const dataNext = allData.next
-//     //console.log(dataNext)
-//     const nextPage = document.getElementById('arrowRight')
-//     nextPage.onclick = () => {
-//         currentPage = dataNext;
-//         console.log('hi')
-//     }
-// }
-
-
-
-
-const prevPage = document.getElementById('arrowLeft')
-prevPage.onclick = () => {
-    console.log('bye')
-}
-
-// const nextPage = document.getElementById('arrowRight')
-// nextPage.onclick = () => {
-//     console.log('hello')
-// }
 
 // массив с картинками героев
 const picBank = [
@@ -161,3 +164,4 @@ const picBank = [
     'img/Obi_Wan_Kenobi.jpg'
 ]
 
+loadPage();  // вызываем функцию первоначальной загрузки страницы
