@@ -37,6 +37,11 @@ function findPlanet(dataList){
 //функция отрисовки данных героя
 function render() {
     const warriorsList = document.querySelector('.warriors__list');
+   
+    //добавляем плагин - будет крутиться, пока загружется название планет
+    const loaderPlanet = `
+    <div class="pulse"></div>
+    `
     warriorsList.innerHTML = dataList.map(function (warrior, idx) {   //перебираем массив героев
         return `
         <li class="hero">
@@ -57,7 +62,7 @@ function render() {
                     <p class="birthday__info-date text-info">${warrior.birth_year}</p>
                    
                     <p class="planet__info text-info">Planet:</p>
-                    <p class="planet__info-place text-info">${homeList[idx]}</p> 
+                    <p class="planet__info-place text-info">${homeList[idx] ? homeList[idx] : loaderPlanet}</p> 
                 </div>
             </li>
         `
@@ -155,6 +160,4 @@ const picBank = [
     'img/Biggs_Darklighter.jpg',
     'img/Obi_Wan_Kenobi.jpg'
 ]
-
-
 
