@@ -5,64 +5,39 @@ let allData;
 const heroCard = document.querySelector('.hero__card');
 let currentPage = 'https://swapi.dev/api/people/';
 
+let pageList = []
+let newPage;
+
+
+// функция - обращаемся к серверу, на котором хранятся данные
 fetch(currentPage)
     .then(response => response.json())
     .then((data) => {
-        dataList = data.results;
+        dataList = data.results;  //из всего массива обращаемся к массиву с массивом героев и сохраняем его в собственный массив dataList
         allData = data;
-        //findPlanet();
+        findPlanet(dataList); // передаем массив героев в функцию, чтобы вытащить ссылку на массив с характеристиками планет
         console.log(allData)
-        console.log(currentPage)
-        render();
-     //   changePage()
-        
+        render(); //передаем на отрисовку данные героев, которые мы вытащили из массива
     });
 
-let testPage = fetch(currentPage)
-.then(response => response.json())
-.then((data) => {
-    testPage = data.next
-    console.log(testPage)
- //   changePage()
-    
-});
-console.log(testPage)
 
-// function findPlanet(){
-//     dataList.map(function(hero){
-//         fetch(hero.homeworld)
-//         .then(response => response.json())
-//         .then((home) =>{
-//             homeList.push(home.name);
-//             //console.log(homeList)
-//             //console.log(home.name)
-//         })
-//        // console.log(homeList)
 
-//     })
+// функция, которая возьмет ссылку на массив планет и вытащит название планеты рождения героя
+function findPlanet(dataList){
+    dataList.map(function(hero, idx){  // перебираем массив героев
+        fetch(hero.homeworld)          // вытаскиваем название планеты героя
+        .then(response => response.json())
+        .then((home) =>{
+            homeList[idx] = home.name; // сохраняем название планеты в новый массив
+            render(); //передаем на отрисовку данные планеты, которые мы вытащили из массива
+        })
+    })
+}
 
-// }
-// console.log(homeList)
-
+//функция отрисовки данных героя
 function render() {
     const warriorsList = document.querySelector('.warriors__list');
-    warriorsList.innerHTML = dataList.map(function (warrior, idx) {
-
-
-        //console.log(warrior.homeworld)
-        fetch(warrior.homeworld)
-            .then(response => response.json())
-            .then((home) => {
-                homeList.push(home.name);
-
-            })
-
-        //  console.log(homeList)
-
-        //  ${fetch(warrior.homeworld).then(response => response.json()).then((home) => (home.name))}
-
-
-
+    warriorsList.innerHTML = dataList.map(function (warrior, idx) {   //перебираем массив героев
         return `
         <li class="hero">
                 <div class="main__hero__block">
@@ -82,7 +57,7 @@ function render() {
                     <p class="birthday__info-date text-info">${warrior.birth_year}</p>
                    
                     <p class="planet__info text-info">Planet:</p>
-                    <p class="planet__info-place text-info"></p>
+                    <p class="planet__info-place text-info">${homeList[idx]}</p> 
                 </div>
             </li>
         `
@@ -121,7 +96,7 @@ function showHeroInfo(idx) {
     heroBirthday.textContent = dataList[idx].birth_year;
 
     const heroHome = document.querySelector('.home__info');
-    heroHome.textContent = dataList[idx].homeworld;
+    heroHome.textContent = homeList[idx];                  // название планеты рождения героя
 
     const heroEye = document.querySelector('.eye__info');
     heroEye.textContent = dataList[idx].eye_color;
@@ -139,7 +114,7 @@ function showHeroInfo(idx) {
     heroSkin.textContent = dataList[idx].skin_color;
 
     const heroPic = document.querySelector('.hero__pic');
-    heroPic.style.backgroundImage = 'url('+picBank[idx]+')';
+    heroPic.style.backgroundImage = 'url('+picBank[idx]+')';  //подставляем в background css картинку нужного героя из массива
     console.log(picBank[idx])
 }
 
@@ -157,8 +132,6 @@ function showHeroInfo(idx) {
 
 
 
-
-
 const prevPage = document.getElementById('arrowLeft')
 prevPage.onclick = () => {
     console.log('bye')
@@ -169,6 +142,7 @@ prevPage.onclick = () => {
 //     console.log('hello')
 // }
 
+// массив с картинками героев
 const picBank = [
     'img/luke_skywalker.jpg',
     'img/C_3PO.jpg',
@@ -181,4 +155,6 @@ const picBank = [
     'img/Biggs_Darklighter.jpg',
     'img/Obi_Wan_Kenobi.jpg'
 ]
+
+
 
